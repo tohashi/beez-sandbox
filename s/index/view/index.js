@@ -26,62 +26,15 @@ define(function (require, exports, module) {
     var IndexView = beez.View.extend(
         'index.view.IndexView',
         {
-            /**
-             * $el.name
-             *
-             * @memberof IndexView
-             * @name tagName
-             * @type {String}
-             * @override Backbone.View.tagName
-             * @readonly
-             */
             tagName: 'section',
-
-            /**
-             * $el.id
-             *
-             * @memberof IndexView
-             * @name id
-             * @type {String}
-             * @override Backbone.View.id
-             * @readonly
-             */
-            id: 'beez-sandbox',
-
-            /**
-             * Index path view manager
-             *
-             * @memberof IndexView
-             * @name vidx
-             * @type {String}
-             * @override beez.View
-             * @readonly
-             */
+            id: 'todos',
             vidx: '@',
 
-            /**
-             * Display order
-             *
-             * @memberof IndexView
-             * @name order
-             * @type {Integer}
-             * @override beez.View
-             */
-            order: 0,
-
-            /**
-             * DOM rendering
-             *
-             * @memberof IndexView
-             * @function
-             * @param {function} done Asynchronous completion function
-             */
             render: function render(done) {
-                var self = this;
-                mcss.async().load('/index/styl/index.css').then(function onload() {
-                    $('body').append(self.$el.html(template({project: "beez-sandbox"})));
+                mcss.async().load('/index/styl/index.css').then(_.bind(function() {
+                    $('body').append(this.$el);
                     done();
-                }).end();
+                }, this)).end();
             }
         });
 

@@ -40,6 +40,11 @@ define(function (require, exports, module) {
                 // Setup Root View and Model
                 var IndexView = require('index/view/index');
                 mv.root(IndexView);
+                var HeaderView = require('index/view/header');
+                mv.create('/@', HeaderView);
+                var ContentView = require('index/view/content');
+                mv.create('/@', ContentView);
+
                 var IndexModel = require('index/Model/index');
                 mm.root(IndexModel);
 
@@ -64,13 +69,7 @@ define(function (require, exports, module) {
              * @name index
              */
             index: function index() {
-                mv.get('/@').async().show().then(function () {
-                    /**************
-                     * // Next submodule ....
-                     * beez.manager.r.navigate('...');
-                     **/
-
-                }).end();
+                mv.get('/@').async().show().end();
             }
         }
     );
